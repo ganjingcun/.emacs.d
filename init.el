@@ -2,8 +2,10 @@
     (require 'package)
     (package-initialize)
 
-    (add-to-list 'package-archives '("melpa" . "http://elpa.zilongshanren.com/melpa/") t))
-
+    (setq package-archives '(("gnu"   . "http://elpa.zilongshanren.com/gnu/")
+                         ("melpa" . "http://elpa.zilongshanren.com/melpa/")))
+    ;;(add-to-list 'package-archives '("melpa" . "http://elpa.zilongshanren.com/melpa/") t)
+    )
 
 
 ;; cl - Common Lisp Extension
@@ -21,6 +23,7 @@
 	       nodejs-repl
 	       ;;mac 系统  －－为了找到可执行程序
 	       exec-path-from-shell
+	       popwin
 	       ) "Default packages")
 
 (setq package-selected-packages my/packages)
@@ -79,6 +82,9 @@
 
 ;; 去掉~后缀备份文件
 (setq make-backup-files nil)
+(setq auto-save-default nil)
+
+
 
 ;; 文档语法高亮
 (require 'org)
@@ -144,6 +150,11 @@
 (setq org-agenda-files '("~/myorg"))
 (global-set-key (kbd "C-c a") 'org-agenda)
 
+;; 自动加载外部的变动
+(global-auto-revert-mode t)
+
+(require 'popwin)
+(popwin-mode t)
 
 ;; -------------   customeize -------------- ;;
 
