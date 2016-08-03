@@ -13,9 +13,9 @@
 (require 'init-keybindings)
 (require 'init-org)
 
-
 ;; 加载custom.el 作为指定的customeize文件
 (setq custom-file (expand-file-name "mine/custom.el" user-emacs-directory))
+
 (load-file custom-file)
 
 

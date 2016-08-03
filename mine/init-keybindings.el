@@ -9,7 +9,8 @@
 (global-set-key (kbd "<f1> l") 'counsel-load-library)
 
 ;; recent files
-(global-set-key "\C-x\ \C-r" 'recentf-open-files)
+(global-set-key (kbd "C-x C-r") 'recentf-open-files)
+;;(global-set-key "\C-x\ \C-r" 'recentf-open-files)
 
 ;; help 
 (global-set-key (kbd "C-h C-f") 'find-function)
@@ -19,5 +20,6 @@
 ;; init file
 (global-set-key (kbd "<f5>") 'open-my-init-file)
 
+(global-set-key (kbd "C-c p f") 'counsel-git)
 
 (provide 'init-keybindings)
