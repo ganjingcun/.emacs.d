@@ -1,56 +1,8 @@
-(when (>= emacs-major-version 24)
-    (require 'package)
-    (package-initialize)
+(package-initialize)
 
-    (setq package-archives '(("gnu"   . "http://elpa.zilongshanren.com/gnu/")
-                         ("melpa" . "http://elpa.zilongshanren.com/melpa/")))
-    ;;(add-to-list 'package-archives '("melpa" . "http://elpa.zilongshanren.com/melpa/") t)
-    )
+(add-to-list 'load-path "~/.emacs.d/mine/")
 
-
-;; cl - Common Lisp Extension
-(require 'cl)
-
-;; Add Packages
-(defvar my/packages '(
-	       company
-	       hungry-delete
-	       swiper
-	       counsel
-	       smartparens
-	       monokai-theme
-	       js2-mode
-	       nodejs-repl
-	       ;;mac 系统  －－为了找到可执行程序
-	       exec-path-from-shell
-	       popwin
-	       ) "Default packages")
-
-(setq package-selected-packages my/packages)
-
-(defun my/packages-installed-p ()
-    (loop for pkg in my/packages
-	  when (not (package-installed-p pkg)) do (return nil)
-	  finally (return t)))
-
-(unless (my/packages-installed-p)
-    (message "Refreshing package database...")
-    (package-refresh-contents)
-    (dolist (pkg my/packages)
-      (when (not (package-installed-p pkg))
-	(package-install pkg))))
-
-;; Find Executable Path on OS X
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
-
-
-
-
-
-
-
-
+(require 'init-packages)
 
 
 ;; 关闭工具栏
@@ -62,9 +14,6 @@
 ;; 关闭启动画面
 (setq inhibit-splash-screen t)
 
-
-
-
 ;; 打开本配置文件
 (defun open-my-init-file()
   (interactive)
@@ -72,8 +21,6 @@
 
 (global-set-key (kbd "<f5>") 'open-my-init-file)
 
-;; 全局自动补全
-(global-company-mode t)
 
 
 ;; 设置全局光标样式
@@ -112,14 +59,13 @@
 (global-hl-line-mode t)
 
 
-(load-theme 'monokai 1)
-
-(require 'hungry-delete)
-(global-hungry-delete-mode)
 
 
-(ivy-mode 1)
-(setq ivy-use-virtual-buffers t)
+
+
+
+
+
 (global-set-key "\C-s" 'swiper)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (global-set-key (kbd "<f6>") 'ivy-resume)
@@ -131,16 +77,6 @@
 
 
 
-(require 'smartparens-config)
-;;(add-hook 'emacs-lisp-mode-hook 'smartparens-mode)
-(smartparens-global-mode t)
-
-
-;; confi mode for js files
-(setq auto-mode-alist
-      (append
-       '(("\\.js\\'" . js2-mode))
-       auto-mode-alist))
 
 
 (global-set-key (kbd "C-h C-f") 'find-function)
@@ -153,8 +89,22 @@
 ;; 自动加载外部的变动
 (global-auto-revert-mode t)
 
-(require 'popwin)
-(popwin-mode t)
+;; 不要发出警告声
+(setq ring-bell-function 'ignore)
+
+
+;; 设置自动补全规则
+(abbrev-mode t)
+
+(define-abbrev-table 'global-abbrev-table '(
+					    ;; signature
+					    ("8jc" "ganjingcun")
+					    ;; emacs regexp
+					    ("8ms" "Microsoft")
+					    ))
+
+
+
 
 ;; -------------   customeize -------------- ;;
 
