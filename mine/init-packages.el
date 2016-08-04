@@ -21,6 +21,8 @@
 	       ;;mac 系统  －－为了找到可执行程序
 	       exec-path-from-shell
 	       popwin
+	       ;;mac中将当前文件在finder中打开的插件
+	       reveal-in-osx-finder
 	       ) "Default packages")
 
 (setq package-selected-packages my/packages)
