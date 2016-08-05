@@ -23,6 +23,8 @@
 	       popwin
 	       ;;mac中将当前文件在finder中打开的插件
 	       reveal-in-osx-finder
+	       web-mode
+	       js2-refactor
 	       ) "Default packages")
 
 (setq package-selected-packages my/packages)
@@ -51,6 +53,13 @@
 ;; 括号匹配
 ;;(add-hook 'emacs-lisp-mode-hook 'smartparens-mode)
 (smartparens-global-mode t)
+;; 在emact-lisp模式下  输入单引号 不主动生成
+(sp-local-pair 'emacs-lisp-mode "'" nil :actions nil)
+(sp-local-pair 'lisp-interaction-mode "'" nil :actions nil)
+
+;; 也可以把上面两句合起来
+;;(sp-local-pair '(emacs-lisp-mode lisp-interaction-mode) "'" nil :actions nil)
+
 
 ;; 智能搜索
 (ivy-mode t)
@@ -60,6 +69,8 @@
 (setq auto-mode-alist
       (append
        '(("\\.js\\'" . js2-mode))
+       '(("\\.html\\'" . web-mode))
+       '(("\\.htm\\'" . web-mode))
        auto-mode-alist))
 
 ;; 全局自动补全
@@ -71,6 +82,40 @@
 ;; 搜索时候 按q 跳转回来 极为方便
 (require 'popwin)
 (popwin-mode t)
+
+
+(defun my-web-mode-indent-setup ()
+  (setq web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
+  (setq web-mode-css-indent-offset 2)    ; web-mode, css in html file
+  (setq web-mode-code-indent-offset 2)   ; web-mode, js code in html file
+  )
+(add-hook 'web-mode-hook 'my-web-mode-indent-setup)
+
+
+;;下面的函数可以用于在两个空格和四个空格之间进行切换
+(defun my-toggle-web-indent ()
+  (interactive)
+  ;; web development
+  (if (or (eq major-mode 'js-mode) (eq major-mode 'js2-mode))
+      (progn
+	(setq js-indent-level (if (= js-indent-level 2) 4 2))
+	(setq js2-basic-offset (if (= js2-basic-offset 2) 4 2))))
+
+  (if (eq major-mode 'web-mode)
+      (progn (setq web-mode-markup-indent-offset (if (= web-mode-markup-indent-offset 2) 4 2))
+	     (setq web-mode-css-indent-offset (if (= web-mode-css-indent-offset 2) 4 2))
+	     (setq web-mode-code-indent-offset (if (= web-mode-code-indent-offset 2) 4 2))))
+  (if (eq major-mode 'css-mode)
+      (setq css-indent-offset (if (= css-indent-offset 2) 4 2)))
+
+  (setq indent-tabs-mode nil))
+
+(global-set-key (kbd "C-c t i") 'my-toggle-web-indent)
+
+
+;; js 的 重构工具
+(add-hook 'js2-mode-hook #'js2-refactor-mode)
+(js2r-add-keybindings-with-prefix "C-c C-m")
 
 
 (provide 'init-packages)

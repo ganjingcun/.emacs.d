@@ -20,6 +20,16 @@
 ;; init file
 (global-set-key (kbd "<f5>") 'open-my-init-file)
 
+;; 搜索被git管理的文件
 (global-set-key (kbd "C-c p f") 'counsel-git)
 
+;; 自动缩进
+(global-set-key (kbd "C-M-\\") 'indent-region-or-buffer)
+
+;; 另一种补全
+(global-set-key (kbd "s-/") 'hippie-expand)
+
+
+
 (provide 'init-keybindings)
+
