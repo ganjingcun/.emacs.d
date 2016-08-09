@@ -25,6 +25,10 @@
 	       reveal-in-osx-finder
 	       web-mode
 	       js2-refactor
+	       expand-region
+	       iedit
+	       paredit
+	       paren-face
 	       ) "Default packages")
 
 (setq package-selected-packages my/packages)
@@ -117,5 +121,21 @@
 (add-hook 'js2-mode-hook #'js2-refactor-mode)
 (js2r-add-keybindings-with-prefix "C-c C-m")
 
+;; 绑定 imenu
+
+(global-key-binding (kbd "M-s i") 'counsel-imenu)
+
+;;expand-region
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+
+;; schemo paredit mode
+(autoload 'paredit-mode "paredit" "Minor mode for pseudo-structurally editing Lisp code." t)
+
+
+;; 让括号不那么显眼
+;;(require 'paren-face)
+;;(set-face-foreground 'paren-face "DimGray")
+(global-paren-face-mode t)
 
 (provide 'init-packages)
