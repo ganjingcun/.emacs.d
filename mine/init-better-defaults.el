@@ -11,14 +11,19 @@
 
 
 ;; 设置自动补全规则
-(abbrev-mode t)
+;;(abbrev-mode t)
+(add-hook 'emacs-lisp-mode-hook  'abbrev-mode)
 
 (define-abbrev-table 'global-abbrev-table '(
-					    ;; signature
-					    ("8jc" "ganjingcun")
-					    ;; emacs regexp
-					    ("8ms" "Microsoft")
-					    ))
+					      ;; signature
+					      ("8jc" "ganjingcun")
+					      ;; emacs regexp
+					      ("8ms" "Microsoft")
+					      ))
+
+
+
+
 
 
 
@@ -194,5 +199,3 @@
 (set-language-environment "UTF-8")
 
 (provide 'init-better-defaults)
-
-

@@ -30,6 +30,8 @@
 	       paredit
 	       paren-face
 	       helm-ag
+	       flycheck
+	       auto-yasnippet
 	       ) "Default packages")
 
 (setq package-selected-packages my/packages)
@@ -141,5 +143,18 @@
 ;;(require 'paren-face)
 ;;(set-face-foreground 'paren-face "DimGray")
 (global-paren-face-mode t)
+
+;;flycheck
+;;(global-flycheck-mode t)
+(add-hook 'js2-mode-hook #'flycheck-mode)
+
+;; 自动代码补全
+(yas-reload-all)
+(add-hook 'prog-mode-hook #'yas-minor-mode)
+
+;; 自动代码补全
+(global-set-key (kbd "H-w") #'aya-create)
+(global-set-key (kbd "H-y") #'aya-expand)
+
 
 (provide 'init-packages)
