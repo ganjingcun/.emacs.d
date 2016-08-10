@@ -32,6 +32,7 @@
 	       helm-ag
 	       flycheck
 	       auto-yasnippet
+	       evil-leader
 	       ) "Default packages")
 
 (setq package-selected-packages my/packages)
@@ -156,5 +157,7 @@
 (global-set-key (kbd "H-w") #'aya-create)
 (global-set-key (kbd "H-y") #'aya-expand)
 
+
+(global-evil-leader-mode)
 
 (provide 'init-packages)
