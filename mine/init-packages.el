@@ -29,6 +29,7 @@
 	       iedit
 	       paredit
 	       paren-face
+	       helm-ag
 	       ) "Default packages")
 
 (setq package-selected-packages my/packages)
@@ -122,12 +123,15 @@
 (js2r-add-keybindings-with-prefix "C-c C-m")
 
 ;; 绑定 imenu
-
 (global-key-binding (kbd "M-s i") 'counsel-imenu)
 
 ;;expand-region
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
+
+;; 给iedit 模式绑定快捷键
+(require 'iedit)
+(global-key-binding (kbd "M-s e") 'iedit-mode)
 
 ;; schemo paredit mode
 (autoload 'paredit-mode "paredit" "Minor mode for pseudo-structurally editing Lisp code." t)

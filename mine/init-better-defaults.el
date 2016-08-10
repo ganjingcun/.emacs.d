@@ -190,6 +190,8 @@
     (define-key scheme-mode-map (kbd "<f7>") 'scheme-send-last-sexp-split-window)
     (define-key scheme-mode-map (kbd "<f6>") 'scheme-send-definition-split-window)))
 
+;; 默认字符集
+(set-language-environment "UTF-8")
 
 (provide 'init-better-defaults)
 

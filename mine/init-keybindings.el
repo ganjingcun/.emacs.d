@@ -29,7 +29,17 @@
 ;; 另一种补全
 (global-set-key (kbd "s-/") 'hippie-expand)
 
+;; 在finder中打开
+(global-set-key (kbd "C-,") 'reveal-in-osx-finder)
 
+(with-eval-after-load 'company
+  (define-key company-active-map (kbd "M-n") nil)
+  (define-key company-active-map (kbd "M-p") nil)
+  (define-key company-active-map (kbd "C-n") #'company-select-next)
+  (define-key company-active-map (kbd "C-p") #'company-select-previous))
+
+
+(global-set-key (kbd "C-c p s") 'helm-ag-project-root)
 
 (provide 'init-keybindings)
 

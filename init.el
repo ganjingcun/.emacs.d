@@ -10,8 +10,9 @@
 (require 'init-packages)
 (require 'init-ui)
 (require 'init-better-defaults)
-(require 'init-keybindings)
 (require 'init-org)
+(require 'init-keybindings)
+
 
 ;; 加载custom.el 作为指定的customeize文件
 (setq custom-file (expand-file-name "mine/custom.el" user-emacs-directory))
