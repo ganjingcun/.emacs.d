@@ -34,7 +34,6 @@
 	       auto-yasnippet
 	       evil-leader
 	       window-numbering
-	       powerline
 	       ) "Default packages")
 
 (setq package-selected-packages my/packages)
@@ -180,7 +179,5 @@
 ;; M-0～9切换窗口 （原来的需要按 C-x o 或者evil模式下按C-w h C-w l 使用上不方便）
 (window-numbering-mode t)
 
-;;(require 'powerline)
-;;(powerline-default-theme)
 
 (provide 'init-packages)
