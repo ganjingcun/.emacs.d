@@ -41,5 +41,9 @@
 
 (global-set-key (kbd "C-c p s") 'helm-ag-project-root)
 
+;; 按 C-w 删除前一个词
+
+(global-set-key (kbd "C-w") 'backward-kill-word)
+
 (provide 'init-keybindings)
 

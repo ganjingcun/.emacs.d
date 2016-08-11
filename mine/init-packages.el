@@ -33,6 +33,8 @@
 	       flycheck
 	       auto-yasnippet
 	       evil-leader
+	       window-numbering
+	       powerline
 	       ) "Default packages")
 
 (setq package-selected-packages my/packages)
@@ -158,6 +160,27 @@
 (global-set-key (kbd "H-y") #'aya-expand)
 
 
-(global-evil-leader-mode)
+
+
+;; vim 相关配置 
+
+(evil-mode t)
+(setcdr evil-insert-state-map nil)
+(define-key evil-insert-state-map [escape] 'evil-normal-state)
+
+(global-evil-leader-mode t)
+(evil-leader/set-key
+  "ff" 'find-file                 ;; find file 
+  "rf" 'recentf-open-files        ;; recnet file list 
+  "pf" 'counsel-git               ;; project files 
+  "w3" 'split-window-right
+  "w2" 'split-window-below
+  "w1" 'delete-other-windows)
+
+;; M-0～9切换窗口 （原来的需要按 C-x o 或者evil模式下按C-w h C-w l 使用上不方便）
+(window-numbering-mode t)
+
+;;(require 'powerline)
+;;(powerline-default-theme)
 
 (provide 'init-packages)
