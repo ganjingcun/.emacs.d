@@ -34,6 +34,7 @@
 	       auto-yasnippet
 	       evil-leader
 	       window-numbering
+	       which-key
 	       ) "Default packages")
 
 (setq package-selected-packages my/packages)
@@ -171,7 +172,8 @@
 (evil-leader/set-key
   "ff" 'find-file                 ;; find file 
   "rf" 'recentf-open-files        ;; recnet file list 
-  "pf" 'counsel-git               ;; project files 
+  "pf" 'counsel-git               ;; project files
+  "fs" 'helm-ag                   ;; file search 
   "w3" 'split-window-right
   "w2" 'split-window-below
   "w1" 'delete-other-windows)
@@ -179,5 +181,7 @@
 ;; M-0～9切换窗口 （原来的需要按 C-x o 或者evil模式下按C-w h C-w l 使用上不方便）
 (window-numbering-mode t)
 
+(which-key-mode t)
+;;(which-key-setup-side-window-right)
 
 (provide 'init-packages)
