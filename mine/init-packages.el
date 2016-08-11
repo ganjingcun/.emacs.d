@@ -35,6 +35,7 @@
 	       evil-leader
 	       window-numbering
 	       which-key
+	       mwe-log-commands
 	       ) "Default packages")
 
 (setq package-selected-packages my/packages)
@@ -66,6 +67,9 @@
 ;; 在emact-lisp模式下  输入单引号 不主动生成
 (sp-local-pair 'emacs-lisp-mode "'" nil :actions nil)
 (sp-local-pair 'lisp-interaction-mode "'" nil :actions nil)
+(sp-local-pair 'emacs-lisp-mode "`" nil :actions nil)
+(sp-local-pair 'lisp-interaction-mode "`" nil :actions nil)
+
 
 ;; 也可以把上面两句合起来
 ;;(sp-local-pair '(emacs-lisp-mode lisp-interaction-mode) "'" nil :actions nil)
@@ -183,5 +187,8 @@
 
 (which-key-mode t)
 ;;(which-key-setup-side-window-right)
+
+;;记录键盘的命令 
+;;(mwe:log-keyboard-commands t)
 
 (provide 'init-packages)
